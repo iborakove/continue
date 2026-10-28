@@ -3,7 +3,6 @@ import { ErrorCode, McpError } from "@modelcontextprotocol/sdk/types.js";
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
-import { fileURLToPath } from "node:url";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import {
   InternalSseMcpOptions,
@@ -367,9 +366,7 @@ describe("MCPConnection", () => {
   });
 
   describe("resource template discovery (stdio SDK server)", () => {
-    const fixture = fileURLToPath(
-      new URL("./fixtures/stdioResourceServer.mjs", import.meta.url),
-    );
+    const fixture = path.join(__dirname, "fixtures", "stdioResourceServer.mjs");
     const connections: MCPConnection[] = [];
     let tmpDir: string;
 
